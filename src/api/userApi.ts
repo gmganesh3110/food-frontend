@@ -29,15 +29,15 @@ export const useGetMyUser = (): {
   const { data, isLoading, error } = useQuery("fetchCurrentUser", getMyUserRequest);
 
   if (error) {
-    toast.error(error.toString());
+    toast.error((error as Error).toString());
   }
 
   return {
     data,
     isLoading,
-    error,
+    error: error as Error,
   };
-};
+}
 
 type CreateUserRequest = {
   auth0Id: string;
